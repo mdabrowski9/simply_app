@@ -2,10 +2,18 @@
 
 declare(strict_types=1);
 
+namespace App\HouseholdAppliance;
+
 require_once 'HouseholdAppliancesInterface.php';
-require_once 'Exceptions/GivenObjectExistException.php';
-require_once 'Exceptions/GivenObjectNotExistException.php';
-require_once 'ProductCollection.php';
+require_once __DIR__ . '/../Exceptions/GivenObjectExistException.php';
+require_once __DIR__ . '/../Exceptions/GivenObjectNotExistException.php';
+require_once __DIR__ . '/../Product/ProductCollection.php';
+
+use App\Exceptions\KeyHasUseException;
+use App\Product\ProductCollection;
+use App\HouseholdAppliance\HouseholdAppliancesInterface;
+use App\Product\Product;
+use App\Exceptions\GivenObjectExistException;
 
 class Fridge implements HouseholdAppliancesInterface
 {
@@ -69,20 +77,20 @@ class Fridge implements HouseholdAppliancesInterface
 
     /**
      * @param Product $product
-     * @throws GivenObjectNotExistException
+     * @throws GivenObjectExistException
      * @throws KeyHasUseException
      */
     public function addProduct(Product $product): void
     {
         if ($this->isEnoughSpaceToAddProduct($product) < 0) {
-            throw new GivenObjectNotExistException('This object already exists in ' . self::class);
+            throw new GivenObjectExistException('This object already exists in ' . self::class);
         }
             $this->products->addItem($product, $product->getProductName());
     }
 
     /**
      * @param Product $product
-     * @throws ObjectNotExistException
+     * @throws \App\Exceptions\ObjectNotExistException
      */
     public function removeProduct(Product $product): void
     {
@@ -122,6 +130,9 @@ class Fridge implements HouseholdAppliancesInterface
         return ($freeSpace <=> $product->getProductCapacity());
     }
 
+    /**
+     * @return int
+     */
     private function spaceInUse(): int
     {
         $spaceInUse = 0;

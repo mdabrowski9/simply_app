@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
+namespace App\HouseholdAppliance;
+
+/**
+ * Interface HouseholdAppliancesInterface
+ * @package App\HouseholdAppliance
+ */
 interface HouseholdAppliancesInterface
 {
-    /**
-     * @return float
-     */
-    public function getTemperature(): float ;
-
     /**
      * @return int
      */

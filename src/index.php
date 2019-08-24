@@ -1,7 +1,13 @@
 <?php
 
-require_once 'Fridge.php';
-require_once 'Product.php';
+require_once 'HouseholdAppliance/Fridge.php';
+require_once 'Product/Product.php';
+
+use App\HouseholdAppliance\Fridge;
+use App\Product\Product;
+use App\Exceptions\GivenObjectNotExistException;
+use App\Exceptions\GivenObjectExistException;
+use App\Exceptions\KeyHasUseException;
 
 $myFridge = new Fridge(5.5, 10000, 'black');
 $product1 = new Product('milk', 400);
@@ -21,7 +27,7 @@ try{
     $myFridge->removeProduct($product1);
 
 }
-catch(GivenObjectExistException|GivenObjectNotExistException $exception)
+catch(GivenObjectExistException|GivenObjectNotExistException|KeyHasUseException $exception)
 {
     print_r($exception->getMessage());
 }

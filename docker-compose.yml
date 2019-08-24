@@ -6,7 +6,6 @@ services:
       context: ./docker/php-fpm
     volumes:
       - ./src:/var/www
-      - /var/www
     networks:
       - inner
   nginx:

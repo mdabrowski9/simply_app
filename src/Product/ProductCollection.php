@@ -2,10 +2,16 @@
 
 declare(strict_types=1);
 
-require_once ('Exceptions/KeyHasUseException.php');
-require_once ('Exceptions/KeyInvalidException.php');
-require_once ('Exceptions/ObjectNotExistException.php');
+namespace App\Product;
+
+require_once (__DIR__ . '/../Exceptions/KeyHasUseException.php');
+require_once (__DIR__ . '/../Exceptions/KeyInvalidException.php');
+require_once (__DIR__ . '/../Exceptions/ObjectNotExistException.php');
 require_once ('Product.php');
+
+use App\Exceptions\KeyHasUseException;
+use App\Exceptions\KeyInvalidException;
+use App\Exceptions\ObjectNotExistException;
 
 class ProductCollection
 {

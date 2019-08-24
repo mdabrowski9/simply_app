@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+namespace App\Product;
+
+/**
+ * Class Product
+ * @package App\Product
+ */
 class Product
 {
     /**
