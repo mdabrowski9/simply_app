@@ -5,7 +5,7 @@ services:
     build:
       context: ./docker/php-fpm
     volumes:
-      - ./src:/var/www
+      - ./src:/source
     networks:
       - inner
   nginx:
